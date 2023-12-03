@@ -1,0 +1,45 @@
+﻿#root {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background: #F2F2F2;
+}
+
+tr:nth-child(odd) {
+    background: #FFF;
+}
+
+th, td {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+body{
+    background-color:#161616;
+    margin:0;
+    padding:0;
+    color:white;
+}
+#titleLabel{
+    color:white;
+
+}
+#titleDiv {
+    margin: 0 0 73vh 0;
+}
+#footer {
+
+    color:white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+
+}
+.hideTip{
+    margin-left:1vw;
+    background-color:white;
+}
