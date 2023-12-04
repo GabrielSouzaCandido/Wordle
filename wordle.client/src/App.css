@@ -12,7 +12,9 @@ tr:nth-child(even) {
 tr:nth-child(odd) {
     background: #FFF;
 }
-
+.bold{
+    font-weight:bold;
+}
 th, td {
     padding-left: 1rem;
     padding-right: 1rem;
@@ -37,6 +39,7 @@ body{
     padding: 10px;
     position: fixed;
     bottom: 0;
+    font-weight:bold;
 
 }
 .hideTip{
