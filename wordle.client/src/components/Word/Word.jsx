@@ -6,7 +6,16 @@ function Word(onTextInput) {
     const [word, setWord] = useState([Array(6).fill("_")]);
     const [wordClass, setClass] = useState([Array(6).fill("Spotlight")]);
     const [currentMove, setCurrentMove] = useState(0);
+    const [lastTries, setLastTries] = useState("");
     let misteryWord = "Cavalo";
+
+    function addNewTry(newTry) {
+        if (lastTries == "") {
+            setLastTries(newTry);
+        } else {
+            setLastTries(lastTries + "," + newTry);
+        }
+    }
 
     const handleKeyPress = (event) => {
 
@@ -30,6 +39,8 @@ function Word(onTextInput) {
                 setClass(nextClass);
             } else if (event.key != 'Backpace' && nextMove < word[0].length) {
                 let nextMove = currentMove + 1;
+
+                
                 /*     if (nextMove > word[0].length - 1) nextMove = 0;*/
                 nextWord[0][currentMove] = event.key;
                 nextClass[0][currentMove] = newClass;
@@ -41,6 +52,7 @@ function Word(onTextInput) {
                 setCurrentMove(nextMove);
                 setWord(nextWord);
                 setClass(nextClass);
+                if (nextMove == word[0].length) addNewTry(word[0].join().replace(/,/g, ''));
             }
         }
        
@@ -48,7 +60,7 @@ function Word(onTextInput) {
             alert('acertou');
         }
 
-
+        
 
 
     };
@@ -60,9 +72,17 @@ function Word(onTextInput) {
         </span>
     ));
     return (
-        <div>
-            <p>{ilustrate}</p>
-        </div>
+        <>
+            <div>
+                <p>{ilustrate}</p>
+            </div>
+            <div>
+                <p>Ultimas Tentativas:{lastTries}</p>
+            </div>
+        
+        </>
+       
+
     );
 }
 export default Word;
