@@ -52,7 +52,7 @@ function Word(onTextInput) {
                 setCurrentMove(nextMove);
                 setWord(nextWord);
                 setClass(nextClass);
-                if (nextMove == word[0].length) addNewTry(word[0].join().replace(/,/g, ''));
+                if (nextMove == word[0].length && !word[0].includes('_')) addNewTry(word[0].join().replace(/,/g, ''));
             }
         }
        
