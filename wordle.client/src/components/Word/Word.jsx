@@ -1,6 +1,7 @@
 import React from 'react';
 import './Word.css';
 import { useState } from 'react';
+import raw from '../../assets/BrasilianWords.txt';
 
 function Word(onTextInput) {
     const [word, setWord] = useState([Array(6).fill("_")]);
@@ -16,7 +17,21 @@ function Word(onTextInput) {
             setLastTries(lastTries + "," + newTry);
         }
     }
+    async function readWord(fullWord) {
+        try {
+            const response = await fetch(raw);
+            const text = await response.text();
 
+            // Dividir o texto em linhas e criar um array
+            const wordArray = text.split('\n').map(line => line.trim());
+
+            // Verificar se a palavra está presente no array
+            return wordArray.includes(fullWord.toLowerCase());
+        } catch (error) {
+            console.error('Erro ao fazer a requisição:', error);
+            return false;
+        }
+    }
     const handleKeyPress = (event) => {
 
         
@@ -25,8 +40,9 @@ function Word(onTextInput) {
         const nextClass = [...wordClass];
         let nextMove = currentMove;
         let newClass = "noClass";
-
+        let isWord = false;
         if (/^[a-zA-Z]$/.test(event.key) || event.key === 'Backspace') {
+         
             if (event.key === 'Backspace' && (currentMove > 0 || nextWord[0][5] != "-")) {
 
                 if (nextMove == 0 && nextWord[0][5] != "-") nextMove = word[0].length - 1;
@@ -44,7 +60,7 @@ function Word(onTextInput) {
                 /*     if (nextMove > word[0].length - 1) nextMove = 0;*/
                 nextWord[0][currentMove] = event.key;
                 nextClass[0][currentMove] = newClass;
-
+        
                 console.log(nextClass);               
                 console.log(nextClass);
 
@@ -52,11 +68,23 @@ function Word(onTextInput) {
                 setCurrentMove(nextMove);
                 setWord(nextWord);
                 setClass(nextClass);
-                if (nextMove == word[0].length && !word[0].includes('_')) addNewTry(word[0].join().replace(/,/g, ''));
+
+                fetch(raw)
+                    .then(r => r.text())
+                    .then(text => {
+                        const wordArray = text.split('\n').map(line => line.trim());
+                        if (wordArray.includes(word[0].join().replace(/,/g, '').toLowerCase())) {
+
+                            if (nextMove == word[0].length) addNewTry(word[0].join().replace(/,/g, ''));
+                        }
+                     
+                    });
+      
+             
             }
         }
        
-        if (misteryWord == word[0].join().replace(/,/g, '')) {
+        if (misteryWord == word[0].join().replace(/,/g, '').toLowerCase()) {
             alert('acertou');
         }
 
