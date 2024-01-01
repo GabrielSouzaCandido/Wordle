@@ -83,8 +83,8 @@ function Word(onTextInput) {
              
             }
         }
-       
-        if (misteryWord == word[0].join().replace(/,/g, '').toLowerCase()) {
+
+        if (misteryWord.toLowerCase() == word[0].join().replace(/,/g, '').toLowerCase()) {
             alert('acertou');
         }
 
