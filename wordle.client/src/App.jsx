@@ -3,7 +3,7 @@ import { Word,Tries } from './components';
 import './App.css';
 import raw from './assets/Words.txt';
 function App() {
-    let misteryWord = "Venti";
+    const misteryWord = "Venti";
     const [word, setWord] = useState([Array(5).fill("_")]);
     const [wordClass, setClass] = useState([Array(5).fill("Spotlight")]);
     const [currentMove, setCurrentMove] = useState(0);
