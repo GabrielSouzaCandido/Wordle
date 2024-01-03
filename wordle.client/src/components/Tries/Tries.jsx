@@ -1,13 +1,13 @@
 import React from 'react';
 import Try from './Try/Try';
 //Component where the user type the attempt to solve the mistery word
-function Tries({ word }) {
+function Tries({ lastTry }) {
  
     return (
         <>
             <div>
                 <p>Ultimas tentativas:
-                    <Try wrongWord={word} attemptedWord={ word } />
+                    <Try wrongWord={lastTry} attemptedWord={lastTry}  />
                 </p>
             </div>
             <div>

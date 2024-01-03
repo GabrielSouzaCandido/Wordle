@@ -8,14 +8,22 @@ function App() {
     const [wordClass, setClass] = useState([Array(5).fill("Spotlight")]);
     const [currentMove, setCurrentMove] = useState(0);
     const [lastTries, setLastTries] = useState("");
-    const [previousAttempts, setPreviousAttempts] = useState([Array(5)]);
+    const [previousAttempts, setPreviousAttempts] = useState([null]);
 
 
     function addNewTry(newTry) {
-        const attempts = [...previousAttempts];
-        attempts[previousAttempts.length] = newTry;
+        const newAttempt = newTry;       
+        let attempts = [...previousAttempts];
+        let lengthToRead = previousAttempts.length;
+
+        if (previousAttempts[0] === null) {
+            lengthToRead = 0;
+        }
+
+        attempts[lengthToRead] = newTry;
         setPreviousAttempts(attempts);
-        console.log(previousAttempts);
+        setLastTries(newAttempt);
+  
     }
 
     const handleKeyDown = (event) => {
@@ -58,12 +66,16 @@ function App() {
                 fetch(raw)
                     .then(r => r.text())
                     .then(text => {
-                        const wordArray = text.split('\n').map(line => line.trim());
+                        const wordArray = text.toLowerCase().split('\n').map(line => line.trim());
+                   
                         if (wordArray.includes(word[0].join().replace(/,/g, '').toLowerCase())) {
-
+                         
                             if (nextMove == word[0].length) addNewTry(word[0].join().replace(/,/g, ''));
                         }
-
+                        // Lógica dependente do resultado assíncrono pode continuar aqui
+                    })
+                    .catch(error => {
+                        console.error(error);
                     });
 
 
@@ -71,7 +83,8 @@ function App() {
         }
 
         //if (misteryWord.toLowerCase() == word[0].join().replace(/,/g, '').toLowerCase()) {
-        //    alert('acertou');
+          
+
         //}
 
 
@@ -91,7 +104,7 @@ function App() {
                     </span>
                 </p>
                 <Word word={word} wordClass={wordClass} currentMove={currentMove} misteryWord={misteryWord} onKeyDown={(event) => handleKeyDown(event)} />
-                <Tries word={misteryWord} />
+                <Tries lastTry={previousAttempts} />
         </div>
         <div id="footer">      
         <p>&copy; 2023 Git/GabrielSouzaCandido.</p>
