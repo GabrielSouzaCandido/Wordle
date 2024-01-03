@@ -66,8 +66,8 @@ function App() {
                 fetch(raw)
                     .then(r => r.text())
                     .then(text => {
-                        const wordArray = text.toLowerCase().split('\n').map(line => line.trim());
-                   
+                        const wordArray = text.split('\n').map(line => line.split(',')[0].trim().toLowerCase());
+
                         if (wordArray.includes(word[0].join().replace(/,/g, '').toLowerCase())) {
                          
                             if (nextMove == word[0].length) addNewTry(word[0].join().replace(/,/g, ''));
