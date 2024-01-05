@@ -3,14 +3,15 @@ import { Word,Tries } from './components';
 import './App.css';
 import raw from './assets/Words.txt';
 function App() {
-    const misteryWord = "Venti";
-    const [word, setWord] = useState([Array(5).fill("_")]);
-    const [wordClass, setClass] = useState([Array(5).fill("Spotlight")]);
+    const misteryWord = "";
+    const [wordAndTips, setWordAndTips] = useState('');
+
+    const [word, setWord] = useState([]);
+    const [wordClass, setClass] = useState([]);
     const [currentMove, setCurrentMove] = useState(0);
     const [lastTries, setLastTries] = useState("");
     const [previousAttempts, setPreviousAttempts] = useState([null]);
-
-
+    
     function addNewTry(newTry) {
         const newAttempt = newTry;       
         let attempts = [...previousAttempts];
@@ -25,11 +26,58 @@ function App() {
         setLastTries(newAttempt);
   
     }
+    async function FetchWordsAndTips() {
+        try {
+            //Development Url Directory
+            fetch('https://localhost:7252/WordleOperation/FetchWordAndTips',
+                {
+                    method: "POST",
+
+                }).
+                then(response => response.text())
+                .then(data => {
+                    return data.split(',')[0];
+           
+
+                });
+        } catch (error) {
+            console.error('Erro ao buscar palavras e dicas:', error);
+            return "";
+        }
+
+
+      
+
+    }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('https://localhost:7252/WordleOperation/FetchWordAndTips', {
+                    method: 'POST',
+                });
+
+                const data = await response.text();
+                const dataArray = data.split(',')[0];
+                const result = data.split(',')[0];
+                setWordAndTips(result);
+                setWord([Array(result.length).fill('_')]);
+                setClass([Array(result.length).fill('Spolight')]);
+                console.log(word);
+            } catch (error) {
+                console.error('Erro ao buscar palavras e dicas:', error);
+                setWordAndTips('');
+            }
+        };
+
+        fetchData(); // Chama a função de busca quando o componente é montado
+    }, []); // O segundo parâmetro vazio faz com que o useEffect seja executado apenas uma vez (equivalente ao componentDidMount)
+
 
     const handleKeyDown = (event) => {
 
 
-
+     
         const nextWord = [...word];
         const nextClass = [...wordClass];
         let nextMove = currentMove;
@@ -37,7 +85,7 @@ function App() {
         let isWord = false;
         if (/^[a-zA-Z]$/.test(event.key) || event.key === 'Backspace') {
 
-            if (event.key === 'Backspace' && (currentMove > 0 || nextWord[0][5] != "-")) {
+            if (event.key === 'Backspace' && (currentMove > 0 || nextWord[0][word.length] != "-")) {
 
                 if (nextMove == 0 && nextWord[0][5] != "-") nextMove = word[0].length - 1;
                 nextWord[0][nextMove - 1] = '_';

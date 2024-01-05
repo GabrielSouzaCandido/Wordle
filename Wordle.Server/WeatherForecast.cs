@@ -1,4 +1,4 @@
-namespace Wordle.Server
+amespace Wordle.Server
 {
     public class WeatherForecast
     {
