@@ -70,8 +70,8 @@ function App() {
             }
         };
 
-        fetchData(); // Chama a função de busca quando o componente é montado
-    }, []); // O segundo parâmetro vazio faz com que o useEffect seja executado apenas uma vez (equivalente ao componentDidMount)
+        fetchData();
+    }, []); 
 
 
     const handleKeyDown = (event) => {
@@ -97,9 +97,6 @@ function App() {
                 setClass(nextClass);
             } else if (event.key != 'Backpace' && nextMove < word[0].length) {
                 let nextMove = currentMove + 1;
-
-
-                /*     if (nextMove > word[0].length - 1) nextMove = 0;*/
                 nextWord[0][currentMove] = event.key;
                 nextClass[0][currentMove] = newClass;
 
@@ -120,7 +117,7 @@ function App() {
                          
                             if (nextMove == word[0].length) addNewTry(word[0].join().replace(/,/g, ''));
                         }
-                        // Lógica dependente do resultado assíncrono pode continuar aqui
+               
                     })
                     .catch(error => {
                         console.error(error);
@@ -130,10 +127,6 @@ function App() {
             }
         }
 
-        //if (misteryWord.toLowerCase() == word[0].join().replace(/,/g, '').toLowerCase()) {
-          
-
-        //}
 
 
 

@@ -6,16 +6,7 @@ import { useState } from 'react';
 //Component where the user type the attempt to solve the mistery word
 function Word({ word, wordClass, misteryWord, currentMove, onKeyDown }) {
 
-    //const [lastTries, setLastTries] = useState("");
-  
-
-    //function addNewTry(newTry) {
-    //    if (lastTries == "") {
-    //        setLastTries(newTry);
-    //    } else {
-    //        setLastTries(lastTries + "," + newTry);
-    //    }
-    //}
+ 
     async function readWord(fullWord) {
         try {
             const response = await fetch(raw);
