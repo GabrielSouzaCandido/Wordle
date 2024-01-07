@@ -1,0 +1,14 @@
+.Spotlight{
+   
+    font-size:6em;   
+
+}
+
+.SpaceBetween {
+    white-space: pre-wrap;
+    font-size: 5em;
+}
+.hideTip {
+    margin-left: 1vw;
+    background-color: white;
+}

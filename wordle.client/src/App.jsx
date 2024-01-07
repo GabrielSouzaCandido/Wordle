@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Word,Tries } from './components';
+import { Word,Tries,Tip } from './components';
 import './App.css';
 import raw from './assets/Words.txt';
 function App() {
@@ -58,9 +58,10 @@ function App() {
                 });
 
                 const data = await response.text();
-                const dataArray = data.split(',')[0];
+                let dataArray = data.split(',');           
                 const result = data.split(',')[0];
-                setWordAndTips(result);
+                dataArray = dataArray.filter(item => item !== result);
+                setWordAndTips(dataArray);
                 setWord([Array(result.length).fill('_')]);
                 setClass([Array(result.length).fill('Spolight')]);
                 console.log(word);
@@ -139,10 +140,8 @@ function App() {
             <div id="titleDiv" >
             <h1 id="titleLabel">Wordle</h1>
                 <p>
-                    <span className="bold">Tip:</span>   
-                    <span className="hideTip">
-                        work-in-progress
-                    </span>
+                    <Tip ListOfTips={wordAndTips} />
+                   
                 </p>
                 <Word word={word} wordClass={wordClass} currentMove={currentMove} misteryWord={misteryWord} onKeyDown={(event) => handleKeyDown(event)} />
                 <Tries lastTry={previousAttempts} />

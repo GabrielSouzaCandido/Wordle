@@ -11,7 +11,4 @@
   <ItemGroup>
     <None Remove="README.md" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src\components\Tip\" />
-  </ItemGroup>
 </Project>
