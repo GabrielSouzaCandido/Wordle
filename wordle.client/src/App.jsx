@@ -148,7 +148,7 @@ function App() {
                 <Tries lastTry={previousAttempts} />
         </div>
         <div id="footer">      
-        <p>&copy; 2023 Git/GabrielSouzaCandido.</p>
+        <p>&copy; 2024 Git/GabrielSouzaCandido.</p>
         </div>
         </>
     );
