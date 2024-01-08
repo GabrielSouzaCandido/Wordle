@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Word,Tries,Tip } from './components';
+import { Word, Tries, Tip, Confettis } from './components';
 import './App.css';
 import raw from './assets/Words.txt';
 function App() {
@@ -11,7 +11,18 @@ function App() {
     const [currentMove, setCurrentMove] = useState(0);
     const [lastTries, setLastTries] = useState("");
     const [previousAttempts, setPreviousAttempts] = useState([null]);
-    
+    const [isRunning, setIsRunning] = useState(false);
+
+    function showConfettis(){
+        setIsRunning(true);
+    };
+    function isTheRightWord(word) {
+        if (word.toLowerCase() === word.toLowerCase()) return true;
+        return false;
+    }
+    function rightAttempt() {
+        showConfettis();
+    }
     function addNewTry(newTry) {
         const newAttempt = newTry;       
         let attempts = [...previousAttempts];
@@ -22,8 +33,13 @@ function App() {
         }
 
         attempts[lengthToRead] = newTry;
+
+        if (isTheRightWord(newTry)) rightAttempt(newTry);
+
         setPreviousAttempts(attempts);
         setLastTries(newAttempt);
+
+        
   
     }
     async function FetchWordsAndTips() {
@@ -138,7 +154,8 @@ function App() {
     return (
         <>
             <div id="titleDiv" >
-            <h1 id="titleLabel">Wordle</h1>
+                <h1 id="titleLabel">Wordle</h1>
+                <Confettis showConfettis={isRunning} />
                 <p>
                     <Tip ListOfTips={wordAndTips} />
                    
