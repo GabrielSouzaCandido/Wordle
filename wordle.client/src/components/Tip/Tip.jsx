@@ -15,7 +15,7 @@ function Tip({ ListOfTips }) {
             </span><br />
             The character rarity is
             <span className="hideTip">
-                {ListOfTips[1]}
+                {ListOfTips[1]}*
             </span> <br/>
             The character uses a
             <span className="hideTip">

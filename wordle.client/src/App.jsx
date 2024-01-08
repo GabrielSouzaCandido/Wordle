@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { Word, Tries, Tip, Confettis } from './components';
 import './App.css';
 import raw from './assets/Words.txt';
+import audio from './assets/ConfettiSoundEffect.mp3';
+
 function App() {
     const misteryWord = "";
     const [wordAndTips, setWordAndTips] = useState('');
@@ -21,7 +23,8 @@ function App() {
         return false;
     }
     function rightAttempt() {
-        showConfettis();
+        new Audio(audio).play();       
+        showConfettis(); 
     }
     function addNewTry(newTry) {
         const newAttempt = newTry;       
@@ -80,7 +83,7 @@ function App() {
                 setWordAndTips(dataArray);
                 setWord([Array(result.length).fill('_')]);
                 setClass([Array(result.length).fill('Spolight')]);
-                console.log(word);
+                console.log(result);
             } catch (error) {
                 console.error('Erro ao buscar palavras e dicas:', error);
                 setWordAndTips('');
