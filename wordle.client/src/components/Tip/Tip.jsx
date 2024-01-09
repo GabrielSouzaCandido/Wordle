@@ -1,9 +1,7 @@
 import React from 'react';
 import './Tip.css';
-import { useState } from 'react';
 
 
-//Component where the user type the attempt to solve the mistery word
 function Tip({ ListOfTips }) {
 
   

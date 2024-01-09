@@ -1,9 +1,5 @@
 import React from 'react';
 import './Word.css';
-import { useState } from 'react';
-
-
-//Component where the user type the attempt to solve the mistery word
 function Word({ word, wordClass, misteryWord, currentMove, onKeyDown }) {
     
 

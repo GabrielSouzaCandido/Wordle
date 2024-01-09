@@ -45,29 +45,7 @@ function App() {
         
   
     }
-    async function FetchWordsAndTips() {
-        try {
-            //Development Url Directory
-            fetch('https://localhost:7252/WordleOperation/FetchWordAndTips',
-                {
-                    method: "POST",
 
-                }).
-                then(response => response.text())
-                .then(data => {
-                    return data.split(',')[0];
-           
-
-                });
-        } catch (error) {
-            console.error('Erro ao buscar palavras e dicas:', error);
-            return "";
-        }
-
-
-      
-
-    }
 
     useEffect(() => {
         const fetchData = async () => {
