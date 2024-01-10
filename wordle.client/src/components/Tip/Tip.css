@@ -11,4 +11,6 @@
 .hideTip {
     margin-left: 1vw;
     background-color: white;
+    user-select:none;
+
 }
