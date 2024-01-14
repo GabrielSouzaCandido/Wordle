@@ -5,11 +5,12 @@ import raw from './assets/Words.txt';
 import audio from './assets/ConfettiSoundEffect.mp3';
 
 function App() {
-    const misteryWord = "";
     const [wordAndTips, setWordAndTips] = useState('');
-
+    const [rightWord, setRightWord] = useState("");
     const [word, setWord] = useState([]);
     const [wordClass, setClass] = useState([]);
+
+    const [tipClass, setTipClass] = useState("");
     const [currentMove, setCurrentMove] = useState(0);
     const [lastTries, setLastTries] = useState("");
     const [previousAttempts, setPreviousAttempts] = useState([null]);
@@ -18,13 +19,35 @@ function App() {
     function showConfettis(){
         setIsRunning(true);
     };
-    function isTheRightWord(word) {
-        if (word.toLowerCase() === word.toLowerCase()) return true;
+    function isTheRightWord(attempt) {
+        if (rightWord == attempt.toLowerCase()) return true;
         return false;
     }
     function rightAttempt() {
         new Audio(audio).play();       
-        showConfettis(); 
+        showConfettis();
+        showAllTips();
+    }
+    function showOneTip() {
+        for (var i = 0; i < tipClass.length; i++) {
+            if (tipClass[i] == "hideTip") {
+                let tipCopy = [...tipClass];
+                tipCopy[i] = "";
+                setTipClass(tipCopy);
+                return;
+            }
+        }
+        
+    }
+    function showAllTips() {
+        let tipCopy = [...tipClass];
+        for (var i = 0; i < tipClass.length; i++) {
+            if (tipClass[i] == "hideTip") {
+                tipCopy[i] = "";
+             
+            }
+        }
+        setTipClass(tipCopy);
     }
     function addNewTry(newTry) {
         const newAttempt = newTry;       
@@ -37,11 +60,15 @@ function App() {
 
         attempts[lengthToRead] = newTry;
 
-        if (isTheRightWord(newTry)) rightAttempt(newTry);
+        if (isTheRightWord(newTry)) {
+            rightAttempt(newTry);
+        } else {
+            showOneTip();
+        }
 
         setPreviousAttempts(attempts);
         setLastTries(newAttempt);
-
+      
         
   
     }
@@ -58,9 +85,13 @@ function App() {
                 let dataArray = data.split(',');           
                 const result = data.split(',')[0];
                 dataArray = dataArray.filter(item => item !== result);
+
+
+                setRightWord(result);
                 setWordAndTips(dataArray);
                 setWord([Array(result.length).fill('_')]);
                 setClass([Array(result.length).fill('Spolight')]);
+                setTipClass(Array(3).fill('hideTip'));
                 console.log(result);
             } catch (error) {
                 console.error('Erro ao buscar palavras e dicas:', error);
@@ -138,10 +169,10 @@ function App() {
                 <h1 id="titleLabel">Teyvat Wordle</h1>
                 <Confettis showConfettis={isRunning} />
                 <p>
-                    <Tip ListOfTips={wordAndTips} />
+                    <Tip ListOfTips={wordAndTips} ListOfClass={tipClass} />
                    
                 </p>
-                <Word word={word} wordClass={wordClass} currentMove={currentMove} misteryWord={misteryWord} onKeyDown={(event) => handleKeyDown(event)} />
+                <Word word={word} wordClass={wordClass} currentMove={currentMove} misteryWord={rightWord} onKeyDown={(event) => handleKeyDown(event)} />
                 <Tries lastTry={previousAttempts} />
         </div>
         <div id="footer">      
