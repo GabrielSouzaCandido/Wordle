@@ -9,7 +9,7 @@ function App() {
     const [rightWord, setRightWord] = useState("");
     const [word, setWord] = useState([]);
     const [wordClass, setClass] = useState([]);
-
+    const [alreadyWon, setAlreadyWon] = useState(false);
     const [tipClass, setTipClass] = useState("");
     const [currentMove, setCurrentMove] = useState(0);
     const [lastTries, setLastTries] = useState("");
@@ -27,6 +27,7 @@ function App() {
         new Audio(audio).play();       
         showConfettis();
         showAllTips();
+        setAlreadyWon(true);
     }
     function showOneTip() {
         for (var i = 0; i < tipClass.length; i++) {
@@ -114,7 +115,7 @@ function App() {
         let nextMove = currentMove;
         let newClass = "noClass";
         let isWord = false;
-        if (/^[a-zA-Z]$/.test(event.key) || event.key === 'Backspace') {
+        if ((/^[a-zA-Z]$/.test(event.key) || event.key === 'Backspace') && !alreadyWon) {
 
             if (event.key === 'Backspace' && (currentMove > 0 || nextWord[0][word.length] != "-")) {
 
