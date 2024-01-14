@@ -64,13 +64,15 @@ function App() {
             rightAttempt(newTry);
         } else {
             showOneTip();
+
+            setWord([Array(rightWord.length).fill('_')]);
+            setClass([Array(rightWord.length).fill('Spolight')]);
+            setCurrentMove(0);
         }
 
         setPreviousAttempts(attempts);
         setLastTries(newAttempt);
-      
-        
-  
+   
     }
 
 
