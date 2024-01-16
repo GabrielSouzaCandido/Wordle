@@ -15,7 +15,7 @@ function App() {
     const [lastTries, setLastTries] = useState("");
     const [previousAttempts, setPreviousAttempts] = useState([null]);
     const [isRunning, setIsRunning] = useState(false);
-
+    const [numberTries, setNumberTries] = useState(3);
     function showConfettis(){
         setIsRunning(true);
     };
@@ -28,6 +28,12 @@ function App() {
         showConfettis();
         showAllTips();
         setAlreadyWon(true);
+    }
+    function gameOver() {
+        showAllTips();
+        setAlreadyWon(true);
+        setNumberTries("Tentativas Acabaram");
+        setWord(rightWord.split());
     }
     function showOneTip() {
         for (var i = 0; i < tipClass.length; i++) {
@@ -61,14 +67,20 @@ function App() {
 
         attempts[lengthToRead] = newTry;
 
-        if (isTheRightWord(newTry)) {
+        if (isTheRightWord(newTry) || numberTries == 0) {
             rightAttempt(newTry);
-        } else {
+        }
+        else if (numberTries == 1) {
+            gameOver();
+        }
+        else
+        {
             showOneTip();
 
             setWord([Array(rightWord.length).fill('_')]);
             setClass([Array(rightWord.length).fill('Spolight')]);
             setCurrentMove(0);
+            setNumberTries(numberTries - 1);
         }
 
         setPreviousAttempts(attempts);
@@ -172,7 +184,9 @@ function App() {
                 <h1 id="titleLabel">Wordle</h1>
 
                 <h2 id="subtitleLabel">Teyvat Edition</h2>
-
+                <p>
+                    Tentativas Restantes : {numberTries}
+                </p>
                 <Confettis showConfettis={isRunning} />
                 <p>
                     <Tip ListOfTips={wordAndTips} ListOfClass={tipClass} />
