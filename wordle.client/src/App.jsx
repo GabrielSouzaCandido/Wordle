@@ -169,7 +169,10 @@ function App() {
     return (
         <>
             <div id="titleDiv" >
-                <h1 id="titleLabel">Teyvat Wordle</h1>
+                <h1 id="titleLabel">Wordle</h1>
+
+                <h2 id="subtitleLabel">Teyvat Edition</h2>
+
                 <Confettis showConfettis={isRunning} />
                 <p>
                     <Tip ListOfTips={wordAndTips} ListOfClass={tipClass} />

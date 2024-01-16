@@ -27,7 +27,13 @@ body{
 }
 #titleLabel{
     color:white;
+    font-size:70px;
+    margin-bottom:0px;
 
+}
+#subtitleLabel {
+    color: white;
+    margin-bottom:250px;
 }
 #titleDiv {
     margin: 0 0 73vh 0;
