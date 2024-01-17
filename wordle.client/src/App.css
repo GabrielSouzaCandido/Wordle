@@ -28,24 +28,21 @@ body{
 #titleLabel{
     color:white;
     font-size:70px;
-    margin-bottom:0px;
 
 }
 #subtitleLabel {
     color: white;
-    margin-bottom:250px;
+}
+#containerDiv{
+    min-width:20vw;
+    border-style:solid;
+    border-color: white;
 }
 #titleDiv {
     margin: 0 0 73vh 0;
 }
 #footer {
-
-    color:white;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-    font-weight:bold;
+    top:0%;
 
 }
 .hideTip{

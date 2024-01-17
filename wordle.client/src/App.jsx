@@ -184,20 +184,23 @@ function App() {
                 <h1 id="titleLabel">Wordle</h1>
 
                 <h2 id="subtitleLabel">Teyvat Edition</h2>
-                <p>
-                    Tentativas Restantes : {numberTries}
-                </p>
-                <Confettis showConfettis={isRunning} />
-                <p>
-                    <Tip ListOfTips={wordAndTips} ListOfClass={tipClass} />
+                <div id="containerDiv">
+                    <p>
+                        Number of tries left : {numberTries}
+                    </p>
+                    <Confettis showConfettis={isRunning} />
+                    <p>
+                        <Tip ListOfTips={wordAndTips} ListOfClass={tipClass} />
                    
-                </p>
-                <Word word={word} wordClass={wordClass} currentMove={currentMove} misteryWord={rightWord} onKeyDown={(event) => handleKeyDown(event)} />
-                <Tries lastTry={previousAttempts} />
+                    </p>
+                    <Word word={word} wordClass={wordClass} currentMove={currentMove} misteryWord={rightWord} onKeyDown={(event) => handleKeyDown(event)} />
+                        <Tries lastTry={previousAttempts} />
+                </div>
+                {/*<div id="footer">*/}
+                {/*    <p>&copy; 2024 Git/GabrielSouzaCandido.</p>*/}
+                {/*</div>*/}
         </div>
-        <div id="footer">      
-        <p>&copy; 2024 Git/GabrielSouzaCandido.</p>
-        </div>
+      
         </>
     );
     

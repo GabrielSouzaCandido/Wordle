@@ -6,7 +6,7 @@ function Tries({ lastTry }) {
     return (
         <>
             <div>
-                <p>Ultimas tentativas:
+                <p>Last Attempted:
                     <Try wrongWord={lastTry} attemptedWord={lastTry}  />
                 </p>
             </div>
