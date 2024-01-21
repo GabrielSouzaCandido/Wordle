@@ -196,9 +196,7 @@ function App() {
                     <Word word={word} wordClass={wordClass} currentMove={currentMove} misteryWord={rightWord} onKeyDown={(event) => handleKeyDown(event)} />
                         <Tries lastTry={previousAttempts} />
                 </div>
-                {/*<div id="footer">*/}
-                {/*    <p>&copy; 2024 Git/GabrielSouzaCandido.</p>*/}
-                {/*</div>*/}
+             
         </div>
       
         </>
