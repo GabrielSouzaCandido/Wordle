@@ -1,8 +1,9 @@
-![image](https://github.com/GabrielSouzaCandido/Wordle/assets/57289760/a0c69c0f-2e8b-4f46-9832-b790e02a7f1e)
+  ![image](https://github.com/GabrielSouzaCandido/Wordle/assets/57289760/ba1d371c-bb61-40a5-a221-09bff7291981)
+
 
 # Teyvat Wordle
 
-Recriação do jogo Wordle de Josh Wardle, com adição de modos e funcionalidades inovadoras, situado em um novo universo contextual ao qual as palavras e dicas se referem.
+Recriação do jogo Wordle de Josh Wardle, com adição de modos e funcionalidades, situado em um novo universo contextual ao qual as palavras e dicas se referem.
 
 O jogo foi desenvolvido utilizando as tecnologias React para o frontend e ASP.NET Core para o backend.
 
@@ -16,8 +17,8 @@ O jogo foi desenvolvido utilizando as tecnologias React para o frontend e ASP.NE
 
 - **Consistência:** A palavra a ser descoberta não desaparece em atualizações de páginas e só é resetada por meio da reinicialização do projeto.
  
-- **Cena de Vitória:** Caso a palavra inserida seja igual a palavra a ser descoberta conffetis e sons de vitória são disparados para o usuário.
+- **Cena de Vitória:** Caso a palavra inserida seja igual a palavra a ser descoberta confettis e sons de vitória são disparados para o usuário.
 
 ## Vocabulário
 
-Caso você deseja ter acesso as palavras, dicas e vocabulário do jogo acesse `src/assets/Words.txt`
+Caso você deseje ter acesso as palavras, dicas e vocabulário do jogo acesse `src/assets/Words.txt`
