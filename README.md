@@ -1,4 +1,3 @@
-  ![image](https://github.com/GabrielSouzaCandido/Wordle/assets/57289760/ba1d371c-bb61-40a5-a221-09bff7291981)
 
 
 # Teyvat Wordle
